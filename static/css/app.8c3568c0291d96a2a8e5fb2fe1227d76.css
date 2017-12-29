@@ -24,7 +24,11 @@ pre[data-v-3498393a]{
 }
 
 @media (max-width:500px){
-.resumeEditor[data-v-40a436ee]{
+.resume-div[data-v-40a436ee]{
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 10px;
+    padding-top: 10px;
 }
 }
 .htmlMode[data-v-40a436ee] {
@@ -55,4 +59,4 @@ html[data-v-77efa097] {
   box-sizing: border-box;
 }
 
-/*# sourceMappingURL=app.82484ecf653330fc940174f36df3a88a.css.map*/
+/*# sourceMappingURL=app.8c3568c0291d96a2a8e5fb2fe1227d76.css.map*/
