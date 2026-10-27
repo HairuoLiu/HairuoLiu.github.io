@@ -1,0 +1,618 @@
+/* Hairuo Liu — personal page
+   Design tokens & information rhythm inherited from lizheng.ai:
+   ivory paper background, serif display type, single green accent,
+   hairline rules, and one dark "forest" block for the flagship project. */
+
+:root{
+  --lz-ink:#121613;
+  --lz-ink-2:#343a35;
+  --lz-muted:#6c7069;
+  --lz-line:#e2ddd1;
+  --lz-line-2:#d6d0c2;
+  --lz-ivory:#f8f5ee;
+  --lz-paper:#fcfbf7;
+  --lz-sand:#efe9dc;
+  --lz-green:#238343;
+  --lz-green-2:#2c9a51;
+  --lz-green-deep:#1f7a3d;
+  --lz-green-text:#1c6b37;
+  --lz-mint:#8fd4a4;
+  --lz-forest:#0f3d23;
+  --lz-forest-2:#0b2f1b;
+  --lz-on-forest:#f8f1e4;
+  --lz-forest-line:rgba(248,241,228,.14);
+  --lz-serif:"Source Serif 4","Noto Serif SC","Songti SC","STSong",Georgia,serif;
+  --lz-sans:system-ui,-apple-system,"Segoe UI",Roboto,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",Arial,sans-serif;
+  --lz-mono:"Geist Mono Variable","SF Mono",ui-monospace,Menlo,Consolas,monospace;
+  --lz-wrap:1200px;
+  --lz-gut:clamp(20px,4vw,48px);
+  --lz-header-h:68px;
+  --radius:.65rem;
+  --card:#fefdfc;
+
+  /* ---------- type scale ----------
+     8 steps, ratio ≈ 1.33. Every size is bound to exactly ONE leading —
+     reusing a size with a different line-height is what destroyed the
+     hierarchy before (20 sizes / 6 leadings). */
+  --fs-d:52px;   --lh-d:1.16;   /* display — hero h1 only        */
+  --fs-h1:34px;  --lh-h1:1.25;  /* section title                  */
+  --fs-h2:24px;  --lh-h2:1.32;  /* group title                   */
+  --fs-h3:19px;  --lh-h3:1.40;  /* card / job title              */
+  --fs-l:17px;   --lh-l:1.55;  /* lead, positioning paragraph   */
+  --fs-b:15.5px; --lh-b:1.68;  /* body — bullets, notes, answers */
+  --fs-s:13px;   --lh-s:1.55;  /* table cell, small meta        */
+  --fs-m:11.5px; --lh-m:1.40;  /* micro label — kicker/tag/badge */
+
+  /* ---------- space scale ----------
+     4px base. Only these nine values may appear anywhere in this file. */
+  --sp-3xs:4px;  --sp-2xs:8px;  --sp-xs:12px;
+  --sp-s:16px;  --sp-m:24px;   --sp-l:32px;
+  --sp-xl:48px; --sp-2xl:64px; --sp-3xl:96px;
+
+  /* ---------- measure ----------
+     Max line length in ch — constant across sizes, so the column width is
+     what changes, never the reading rhythm. Full-bleed body text in a
+     1104px container runs to ~108ch (1.7× the comfort ceiling) and is the
+     single direct cause of the "wall of text". */
+  --me-b:62ch;  /* body        */
+  --me-l:46ch;  /* lead        */
+  --me-t:34ch;  /* table cell  */
+  --me-c:38ch;  /* card copy   */
+  --me-h:30ch;  /* headline    */
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:#fbf9f5;
+  color:var(--lz-ink);
+  font-family:var(--lz-sans);
+  font-size:var(--fs-b);
+  line-height:1.75;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+
+.wrap{max-width:var(--lz-wrap);margin:0 auto;padding:0 var(--lz-gut)}
+
+/* ---------- header ---------- */
+.site-header{
+  position:sticky;top:0;z-index:50;
+  height:var(--lz-header-h);
+  background:rgba(251,249,245,.88);
+  backdrop-filter:saturate(160%) blur(10px);
+  border-bottom:1px solid var(--lz-line);
+}
+.site-header .wrap{height:100%;display:flex;align-items:center;gap:var(--sp-m)}
+.brand{display:flex;align-items:baseline;gap:var(--sp-2xs);flex:0 0 auto;color:inherit}
+.brand b,.brand span{transition:font-size .4s cubic-bezier(.34,.86,.28,1),color .4s ease,letter-spacing .4s ease,filter .19s ease}
+.brand b{order:1;font-family:var(--lz-serif);font-size:var(--fs-h3);font-weight:700;letter-spacing:.01em;color:var(--lz-ink)}
+.brand span{order:2;font-size:var(--fs-m);color:var(--lz-muted);letter-spacing:.14em}
+/* In Chinese the two names trade places: 刘海若 takes the loud slot and the
+   Latin name drops to the quiet one. Scoped to the home page so /lexi keeps
+   its "LEXI · ARCHIVE" tag as a subtitle. */
+html[data-lang="zh"] body[data-page="home"] .brand b{order:2;font-size:var(--fs-m);font-weight:600;color:var(--lz-muted);letter-spacing:.1em}
+html[data-lang="zh"] body[data-page="home"] .brand span{order:1;font-family:var(--lz-serif);font-size:var(--fs-h3);font-weight:700;color:var(--lz-ink);letter-spacing:.06em}
+.nav{display:flex;gap:var(--sp-m);margin-left:auto;font-size:var(--fs-b);color:var(--lz-ink-2)}
+.nav a{padding:var(--sp-3xs) 0;border-bottom:2px solid transparent;white-space:nowrap}
+.nav a:hover{color:var(--lz-green-deep);border-bottom-color:var(--lz-green)}
+.header-cta{
+  flex:0 0 auto;margin-left:var(--sp-xs);
+  background:var(--lz-green);color:#fff;
+  padding:var(--sp-2xs) var(--sp-xs);border-radius:var(--radius);
+  /* 14px kept: it sits next to .nav (--fs-b); snapping to --fs-s would drop the
+     CTA two steps below the nav it is grouped with. */
+  font-size:14px;font-weight:600;white-space:nowrap;
+}
+.header-cta:hover{background:var(--lz-green-deep)}
+@media (max-width:900px){.nav{display:none}}
+@media (max-width:420px){.header-cta{display:none}}
+
+/* ---------- language switcher ---------- */
+.lang{position:relative;flex:0 0 auto;margin-left:var(--sp-xs)}
+@media (max-width:900px){.lang{margin-left:auto}}
+@media (max-width:420px){.lang{margin-left:auto}}
+.lang-cur{
+  display:inline-flex;align-items:center;gap:var(--sp-3xs);
+  min-height:36px;padding:var(--sp-3xs) var(--sp-xs);
+  background:var(--lz-paper);color:var(--lz-ink);
+  border:1px solid var(--lz-line-2);border-radius:var(--radius);
+  /* 14px kept, same reason as .header-cta: it is the trigger of a menu whose
+     items are --fs-b, so --fs-s would put it two steps below its own options. */
+  font-family:inherit;font-size:14px;font-weight:600;cursor:pointer;
+}
+.lang-cur:hover{border-color:var(--lz-green);color:var(--lz-green-deep)}
+.lang-cur .flag{display:inline-flex;align-items:center;line-height:0}
+.lang-cur .caret{font-size:var(--fs-m);color:var(--lz-muted)}
+.lang-menu{
+  display:none;position:absolute;top:calc(100% + var(--sp-2xs));right:0;z-index:60;
+  min-width:168px;max-width:calc(100vw - var(--sp-l));margin:0;padding:var(--sp-3xs);list-style:none;
+  background:var(--card);border:1px solid var(--lz-line-2);border-radius:var(--radius);
+  box-shadow:0 12px 28px rgba(18,22,19,.12);
+}
+.lang.open .lang-menu{display:block}
+.lang-menu li{
+  display:flex;align-items:center;gap:var(--sp-2xs);
+  min-height:42px;padding:var(--sp-2xs) var(--sp-xs);border-radius:calc(var(--radius) - .15rem);
+  font-size:var(--fs-b);color:var(--lz-ink-2);cursor:pointer;white-space:nowrap;
+}
+.lang-menu li:hover{background:var(--lz-sand)}
+.lang-menu li.sel{color:var(--lz-green-deep);font-weight:700;background:#e8efe5}
+.lang-menu li .flag{display:inline-flex;align-items:center;line-height:0;flex:0 0 auto}
+/* Flags are inline SVG, not emoji: Windows has no flag glyphs and would render
+   the regional-indicator pairs as "GB" / "CN" letter boxes. */
+.lang-cur .flag svg,.lang-menu li .flag svg{display:block;width:20px;height:15px;border-radius:2px;box-shadow:0 0 0 1px rgba(18,22,19,.14)}
+
+/* ---------- language switch transition ---------- */
+section,.rule,.site-footer{transition:filter .19s ease,opacity .19s ease}
+body.lang-x section,body.lang-x .rule,body.lang-x .site-footer{filter:blur(6px);opacity:.34}
+body.lang-x .brand b,body.lang-x .brand span{filter:blur(4px)}
+@media (prefers-reduced-motion:reduce){
+  section,.rule,.site-footer,.brand b,.brand span{transition:none}
+  body.lang-x section,body.lang-x .rule,body.lang-x .site-footer,
+  body.lang-x .brand b,body.lang-x .brand span{filter:none;opacity:1}
+}
+
+/* ---------- buttons ---------- */
+.btn{
+  display:inline-flex;align-items:center;gap:var(--sp-2xs);
+  padding:var(--sp-xs) var(--sp-m);border-radius:var(--radius);
+  font-size:var(--fs-b);font-weight:600;border:1px solid transparent;
+}
+.btn-primary{background:var(--lz-green);color:#fff}
+.btn-primary:hover{background:var(--lz-green-deep)}
+.btn-ghost{border-color:var(--lz-line-2);color:var(--lz-ink);background:transparent}
+.btn-ghost:hover{border-color:var(--lz-green);color:var(--lz-green-deep)}
+.arrow{font-family:var(--lz-sans)}
+
+/* ---------- hero ----------
+   Composition borrowed from lizheng.ai: two columns bottom-aligned, portrait
+   bottom-anchored at the bottom-right of the intro, unframed with a drop shadow,
+   soft light behind the subject and a paper grain overlay for material feel. */
+.hero{
+  position:relative;isolation:isolate;
+  /* All hero numbers below are calibrated to one target: copy block ≈ 420px
+     vs portrait ≈ 400px, so the height ratio lands on 0.95. Tune them together,
+     never one at a time. */
+  padding:clamp(40px,5vw,72px) 0 clamp(28px,3.5vw,44px);
+  display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+  align-items:end;column-gap:clamp(24px,3vw,48px);row-gap:0;
+  min-height:clamp(24rem,38vw,30rem);
+}
+.hero-copy{z-index:4;position:relative;min-width:0}
+.hero-art{align-self:end;position:relative;z-index:2;height:clamp(280px,26vw,400px)}
+.hero-art .portrait{
+  position:absolute;bottom:0;left:50%;transform:translate(-50%);
+  height:100%;width:auto;max-width:none;
+  filter:drop-shadow(0 12px 28px rgba(18,22,19,.18));
+}
+.hero:before{
+  content:"";position:absolute;inset:0;z-index:-1;
+  background:radial-gradient(46% 54% at 74% 60%,rgba(35,131,67,.10),transparent 70%);
+}
+.hero.grain:after{
+  content:"";position:absolute;inset:0;z-index:3;pointer-events:none;
+  opacity:.07;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .7 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+}
+.hero .rise{animation:.9s cubic-bezier(.2,.7,.2,1) both lz-rise}
+.hero .rise.d1{animation-delay:.05s}
+.hero .rise.d2{animation-delay:.18s}
+.hero .rise.d3{animation-delay:.30s}
+.hero .rise.d4{animation-delay:.42s}
+.hero .portrait.rise{animation-name:lz-rise-portrait;animation-delay:.35s}
+@keyframes lz-rise{0%{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@keyframes lz-rise-portrait{0%{opacity:0;transform:translate(-50%,18px)}to{opacity:1;transform:translate(-50%,0)}}
+@media (max-width:900px){
+  .hero{grid-template-columns:1fr;row-gap:0;min-height:0}
+  /* Portrait follows the copy on narrow screens: putting it above the text
+     pushed the h1 out of the first viewport. */
+  .hero-art{height:min(46vw,220px);margin-top:1.625rem}
+}
+.eyebrow{
+  display:inline-block;font-size:var(--fs-m);letter-spacing:.16em;text-transform:uppercase;
+  /* Plain kicker, no pill: the chip below is the only capsule on this screen,
+     so shape alone separates "static label" from "clickable status". Grey too —
+     the chip is the single colour accent here. */
+  color:var(--lz-muted);border:0;background:transparent;padding:0;
+  margin-bottom:var(--sp-s);
+}
+h1.hero-title{
+  font-family:var(--lz-serif);font-weight:700;
+  font-size:clamp(28px,4.4vw,var(--fs-d));line-height:var(--lh-d);
+  margin:0 0 var(--sp-s);letter-spacing:-.015em;max-width:var(--me-h);
+  text-wrap:balance;
+}
+.hero-lede{
+  /* 62ch keeps the measure inside the "one breath" range — a full-bleed
+     paragraph reads as a wall of text. */
+  max-width:var(--me-b);font-size:var(--fs-l);line-height:var(--lh-l);
+  color:var(--lz-muted);margin:0 0 var(--sp-m);
+}
+html[data-lang="zh"] .hero-lede{max-width:32em}
+.hero-actions{display:flex;flex-wrap:wrap;gap:.625rem;align-items:center}
+
+/* ---------- intro paragraph ----------
+   Sits under the hero and deliberately reads quieter than the h1. It carries
+   the facts that do not belong in the 20-second skim zone — two teams, the
+   3D work, the move toward AI — so it must not compete with it: second-tier
+   ink (evidence, not claim), same 62ch measure as everything else. */
+.about-note{max-width:var(--me-b);margin-top:var(--sp-2xl)}
+.about-note p{
+  margin:0 0 var(--sp-s);font-size:var(--fs-b);line-height:var(--lh-b);
+  color:var(--lz-ink-2);text-wrap:pretty;
+}
+.about-note p:last-child{margin-bottom:0}
+html[data-lang="zh"] .about-note{max-width:32em}
+
+/* ---------- availability chip ----------
+   Replaces the old 5-tile stats band: those numbers all reappear in
+   Experience, so nothing is lost. Outline + status dot only — this is the
+   single colour accent on the first screen, which is why the eyebrow was
+   pulled back to plain grey. Never a filled badge: that would just be the
+   tiles we deleted, wearing a different hat. */
+.chip{
+  display:inline-flex;align-items:center;flex-wrap:nowrap;gap:.625rem;
+  width:fit-content;max-width:100%;margin:0 0 1.5rem;padding:var(--sp-2xs) var(--sp-s);
+  border:1px solid var(--lz-line-2);border-radius:999px;background:transparent;
+  font-size:var(--fs-s);font-weight:600;color:var(--lz-ink);white-space:nowrap;
+  transition:border-color .18s ease,color .18s ease;
+}
+.chip:hover{border-color:var(--lz-green-text);color:var(--lz-ink)}
+.chip .dot{
+  flex:0 0 auto;width:7px;height:7px;border-radius:50%;background:var(--lz-green-2);
+  box-shadow:0 0 0 3px rgba(44,154,81,.16);
+}
+.chip .sep{color:var(--lz-muted)}
+.chip .arrow{color:var(--lz-green-text);transition:transform .18s ease}
+.chip:hover .arrow{transform:translateX(3px)}
+.chip.rise{animation:.9s cubic-bezier(.2,.7,.2,1) .54s both lz-rise}
+/* The chip is one unbreakable string, so narrow screens scale it down before
+   it is ever allowed to wrap. */
+@media (max-width:520px){.chip{font-size:var(--fs-s);gap:.1875rem;padding:var(--sp-2xs)}}
+@media (max-width:400px){.chip{font-size:var(--fs-m);gap:.125rem;padding:var(--sp-2xs)}}
+@media (max-width:340px){.chip{width:100%;flex-wrap:wrap;white-space:normal;row-gap:.25rem;border-radius:.9rem}}
+/* Same reason, one step further down. The eyebrow is the widest object on a
+   320px screen: WATERLOO M.ENG. ECE (CO-OP) is 15.67em at 12.5px = 196px + 54px
+   tracking = 250px against a 280px column — critical, and a slightly wider
+   fallback face tips it over. 11.5px with reduced tracking lands at ~235px. */
+@media (max-width:360px){.eyebrow{font-size:var(--fs-m);letter-spacing:.08em}}
+
+/* ---------- sections ---------- */
+/* Section rhythm: 96 / 64 / 48 desktop-tablet-phone — one heavy pause per
+   section, never two (see the printer's rule below). */
+section{padding:clamp(48px,6vw,96px) 0}
+.sec-head{margin-bottom:var(--sp-2xl);max-width:var(--me-b)}
+.sec-kicker{font-size:var(--fs-m);letter-spacing:.18em;text-transform:uppercase;color:var(--lz-muted);margin-bottom:var(--sp-2xs)}
+.sec-title{font-family:var(--lz-serif);font-size:clamp(24px,3vw,var(--fs-h1));font-weight:700;line-height:var(--lh-h1);margin:0 0 var(--sp-m)}
+.sec-desc{color:var(--lz-muted);font-size:var(--fs-b);line-height:var(--lh-b);max-width:var(--me-b);margin:0}
+/* Printer's rule: a 1px line with a 16px green segment at the left edge. A
+   purely typographic graphic element — costs zero height, but gives the page
+   eight secondary anchors instead of eight anonymous hairlines. */
+.rule{
+  height:1px;background:var(--lz-line);border:0;margin:0;
+  position:relative;
+}
+.rule::before{
+  content:"";position:absolute;left:0;top:0;width:16px;height:1px;background:var(--lz-green);
+}
+
+/* ---------- experience ---------- */
+.job{
+  display:grid;grid-template-columns:3fr 9fr;gap:var(--sp-s) var(--sp-xl);
+  padding:var(--sp-l) 0;border-top:1px solid var(--lz-line);
+}
+.job:last-of-type{border-bottom:1px solid var(--lz-line)}
+.job-meta h3{margin:0;font-size:var(--fs-h3);font-family:var(--lz-serif);font-weight:700;line-height:var(--lh-h3)}
+.job-meta .role{display:block;font-size:var(--fs-b);color:var(--lz-ink-2);margin-top:var(--sp-3xs)}
+.job-meta .period{display:block;font-size:var(--fs-s);color:var(--lz-muted);margin-top:var(--sp-2xs)}
+.job-body{margin:0;padding-left:0;list-style:none}
+.job-body li{
+  position:relative;padding-left:var(--sp-s);margin-bottom:var(--sp-s);
+  font-size:var(--fs-b);line-height:var(--lh-b);color:var(--lz-ink-2);
+  max-width:var(--me-b);
+}
+/* The dash is a bullet marker, not an accent — sand, not green. */
+.job-body li::before{content:"";position:absolute;left:0;top:.72em;width:7px;height:1px;background:var(--lz-line-2)}
+.job-body li b{color:var(--lz-ink);font-weight:600}
+@media (max-width:820px){.job{grid-template-columns:1fr;gap:var(--sp-xs)}}
+
+/* ---------- skills ---------- */
+.skill-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:var(--sp-m)}
+.skill-card{background:var(--card);border:1px solid var(--lz-line);border-radius:var(--radius);padding:var(--sp-l)}
+.skill-card h4{margin:0 0 var(--sp-xs);font-size:var(--fs-s);letter-spacing:.06em;color:var(--lz-muted);font-weight:700}
+.skill-card p{margin:0;font-size:var(--fs-b);color:var(--lz-ink-2);line-height:var(--lh-b);word-break:break-word;max-width:var(--me-c)}
+
+/* ---------- education ---------- */
+.edu{
+  display:flex;justify-content:space-between;gap:var(--sp-m);flex-wrap:wrap;
+  padding:var(--sp-m) 0;border-top:1px solid var(--lz-line);
+}
+.edu:last-of-type{border-bottom:1px solid var(--lz-line)}
+.edu h4{margin:0;font-family:var(--lz-serif);font-size:var(--fs-l);font-weight:700}
+.edu .deg{display:block;font-size:var(--fs-b);color:var(--lz-ink-2);margin-top:var(--sp-3xs)}
+.edu .when{font-size:var(--fs-s);color:var(--lz-muted);white-space:nowrap}
+
+/* ---------- project note ----------
+   One hairline rule, nothing else. The old version stacked four decorations
+   (background + border + 3px green left edge + radius) onto a 14.5px
+   paragraph — and with 41 projects that noise scaled linearly. */
+.note{
+  border-left:2px solid var(--lz-line-2);
+  padding:0 0 0 var(--sp-s);margin-bottom:var(--sp-xl);
+  font-size:var(--fs-b);line-height:var(--lh-b);color:var(--lz-ink-2);
+  max-width:var(--me-b);
+}
+.note b{color:var(--lz-ink)}
+.note code{font-family:var(--lz-mono);font-size:var(--fs-s);background:var(--lz-sand);padding:var(--sp-3xs);border-radius:4px}
+
+/* ---------- featured ---------- */
+.featured{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:var(--sp-m);margin-bottom:var(--sp-xl)}
+.feat{
+  background:var(--card);border:1px solid var(--lz-line);border-radius:var(--radius);
+  padding:var(--sp-l);display:flex;flex-direction:column;gap:var(--sp-xs);
+}
+/* Sand, not green: on the first screen green belongs to the chip alone. */
+.feat .tag{
+  align-self:flex-start;font-size:var(--fs-m);letter-spacing:.1em;text-transform:uppercase;
+  color:var(--lz-muted);background:var(--lz-sand);border-radius:999px;padding:var(--sp-3xs) var(--sp-2xs);
+}
+.feat h4{margin:0;font-family:var(--lz-serif);font-size:var(--fs-h3);font-weight:700}
+.feat p{margin:0;font-size:var(--fs-b);color:var(--lz-ink-2);flex:1}
+.feat .feat-link{font-size:var(--fs-s);color:var(--lz-green-deep);font-weight:600}
+
+/* ---------- group + table ---------- */
+.pgroup{margin-bottom:var(--sp-2xl)}
+.pgroup > h3{
+  font-family:var(--lz-serif);font-size:var(--fs-h2);font-weight:700;
+  line-height:var(--lh-h2);margin:0 0 var(--sp-2xs);
+  display:flex;align-items:center;gap:var(--sp-s);
+}
+/* Printer's rule, inline variant — the only green on this screen. */
+.pgroup > h3::before{content:"";width:16px;height:2px;background:var(--lz-green)}
+.pgroup > .pgroup-desc{margin:0 0 var(--sp-m);font-size:var(--fs-b);line-height:var(--lh-b);color:var(--lz-muted);max-width:var(--me-b)}
+
+.ptable{width:100%;border-collapse:collapse;font-size:var(--fs-b)}
+.ptable thead th{
+  text-align:left;font-size:var(--fs-m);letter-spacing:.08em;text-transform:uppercase;
+  color:var(--lz-muted);font-weight:600;
+  padding:var(--sp-2xs) var(--sp-xs);border-bottom:1px solid var(--lz-line-2);white-space:nowrap;
+}
+.ptable td{padding:var(--sp-s) var(--sp-xs);border-bottom:1px solid var(--lz-line);vertical-align:top}
+.ptable tr:hover td{background:var(--lz-paper)}
+.ptable .p-name{font-weight:700;white-space:nowrap}
+.ptable .p-name small{display:block;font-weight:400;color:var(--lz-muted);font-size:var(--fs-s);margin-top:var(--sp-3xs)}
+.ptable .p-stack{color:var(--lz-ink-2);font-size:var(--fs-s);line-height:var(--lh-s);min-width:170px}
+.ptable .p-status{white-space:nowrap;font-size:var(--fs-s)}
+.ptable .p-link a{color:var(--lz-green-deep);font-weight:600;white-space:nowrap}
+/* Capped at 34ch: a note that wraps to 6-8 lines is not a note, it is a wall. */
+.ptable .p-note{
+  font-size:var(--fs-s);line-height:var(--lh-s);color:var(--lz-ink-2);
+  min-width:280px;max-width:var(--me-t);
+}
+.ptable .p-note em{font-style:normal;color:var(--lz-ink);font-weight:600}
+.ptable .p-note i{font-style:normal;color:var(--lz-muted);font-weight:500}
+
+/* Progressive disclosure. The assessment is supporting evidence, not the
+   headline, so it collapses to a one-line trigger and the 41-row table stays
+   scannable. Nothing is deleted — details/summary keeps every word in the DOM
+   for crawlers, Ctrl-F and print. */
+.p-note-d{display:block;max-width:100%}
+.p-note-d>summary{
+  display:inline-flex;align-items:center;gap:var(--sp-3xs);
+  padding:0;cursor:pointer;list-style:none;
+  font-family:var(--lz-sans);font-size:var(--fs-s);font-weight:600;
+  color:var(--lz-green-deep);white-space:nowrap;
+  transition:color .18s ease;
+}
+.p-note-d>summary::-webkit-details-marker{display:none}
+.p-note-d>summary::marker{content:""}
+.p-note-d>summary::before{
+  content:"";width:0;height:0;margin-right:var(--sp-3xs);
+  border-left:5px solid currentColor;
+  border-top:4px solid transparent;border-bottom:4px solid transparent;
+  transition:transform .2s ease;
+}
+.p-note-d[open]>summary::before{transform:rotate(90deg)}
+.p-note-d>summary:hover{color:var(--lz-ink)}
+/* Indented to the section text column, not to an ad-hoc 32px. */
+.p-note-body{
+  margin-top:var(--sp-2xs);padding-left:var(--sp-s);
+  font-size:var(--fs-s);line-height:var(--lh-s);color:var(--lz-ink-2);
+}
+
+.badge{display:inline-block;font-size:var(--fs-m);padding:var(--sp-3xs) var(--sp-2xs);border-radius:999px;border:1px solid var(--lz-line-2);color:var(--lz-muted)}
+.badge.done{background:#e8efe5;border-color:#cfe3d3;color:var(--lz-green-text)}
+.badge.wip{background:#fdf3e3;border-color:#ecd9b6;color:#8a5a2b}
+.badge.parked{background:#f2f2ef;border-color:var(--lz-line-2);color:var(--lz-muted)}
+.badge.fork{background:#f4f5ef;border-color:var(--lz-line-2);color:#5e584e}
+
+@media (max-width:1080px){
+  .ptable thead{display:none}
+  .ptable, .ptable tbody, .ptable tr, .ptable td{display:block;width:100%}
+  .ptable tr{border:1px solid var(--lz-line);border-radius:var(--radius);padding:var(--sp-s) var(--sp-m);margin-bottom:var(--sp-xs);background:var(--card)}
+  .ptable td{border:0;padding:var(--sp-3xs) 0}
+  .ptable td::before{
+    content:attr(data-l);display:block;font-size:var(--fs-m);letter-spacing:.08em;
+    text-transform:uppercase;color:var(--lz-muted);margin-bottom:var(--sp-3xs);
+  }
+  /* On the card layout the note has the full row width, so the 34ch cap can
+     relax to the card measure. */
+  .ptable .p-note{max-width:var(--me-c)}
+}
+
+/* ---------- AICut (forest block) ---------- */
+.forest{
+  background:var(--lz-forest);color:var(--lz-on-forest);
+  border-radius:calc(var(--radius) * 2);
+  padding:clamp(34px,4.5vw,60px);margin:0 0 var(--sp-2xs);
+}
+.forest .sec-kicker{color:var(--lz-mint)}
+.forest .sec-title{color:#fff}
+.forest .sec-desc{color:rgba(248,241,228,.72)}
+.forest h3,.forest h4{color:#fff}
+
+/* Route Cut vs AICut — the clarification block. Route Cut stays neutral sand
+   (it is not what this section is about); AICut wears the mint of the forest
+   so the eye keeps following the main line. */
+.f-vs{
+  margin:0 0 var(--sp-xl);padding:var(--sp-m) var(--sp-s);
+  background:rgba(248,241,228,.05);border:1px solid var(--lz-forest-line);
+  border-radius:var(--radius);
+}
+.f-vs-head{
+  font-size:var(--fs-s);font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--lz-mint);margin:0 0 var(--sp-s);
+}
+.f-vs-row{display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-s)}
+.f-vs-card{
+  background:rgba(11,32,19,.34);border:1px solid var(--lz-forest-line);
+  border-radius:calc(var(--radius) * .8);padding:var(--sp-m);
+}
+.f-vs-card h5{
+  margin:0 0 var(--sp-2xs);font-family:var(--lz-serif);font-size:var(--fs-h3);
+  font-weight:600;line-height:var(--lh-h3);color:#f3d9a8;
+}
+.f-vs-card p{margin:0;font-size:var(--fs-s);line-height:var(--lh-b);color:rgba(248,241,228,.82);max-width:var(--me-c)}
+.f-vs-card.is-aicut{border-color:rgba(143,212,164,.42)}
+.f-vs-card.is-aicut h5{color:var(--lz-mint)}
+@media (max-width:700px){.f-vs-row{grid-template-columns:1fr}}
+
+.f-hero{display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-xl);align-items:start}
+@media (max-width:900px){.f-hero{grid-template-columns:1fr;gap:var(--sp-m)}}
+.f-pos{font-size:var(--fs-l);line-height:var(--lh-l);color:rgba(248,241,228,.88);max-width:var(--me-b)}
+.f-pos b{color:#fff}
+.f-progress{margin-top:var(--sp-l);border-top:1px solid var(--lz-forest-line);padding-top:var(--sp-m)}
+.f-bar{height:8px;background:rgba(248,241,228,.16);border-radius:999px;overflow:hidden;margin:var(--sp-xs) 0 var(--sp-2xs)}
+.f-bar > i{display:block;height:100%;width:27%;background:var(--lz-mint);border-radius:999px}
+.f-progress .f-num{font-family:var(--lz-serif);font-size:var(--fs-h2);color:var(--lz-mint)}
+.f-meta{font-size:var(--fs-s);line-height:var(--lh-s);color:rgba(248,241,228,.7)}
+
+.ms{list-style:none;margin:0;padding:0;border-top:1px solid var(--lz-forest-line)}
+.ms li{
+  display:flex;gap:var(--sp-xs);align-items:baseline;
+  padding:var(--sp-xs) 0;border-bottom:1px solid var(--lz-forest-line);
+  /* 14.5px kept: at --fs-b (15.5) the n2/n3 milestone names wrap and the rows
+     stop being equal height; --fs-s would shrink the roadmap by 10%. */
+  font-size:14.5px;
+}
+.ms .m-id{font-family:var(--lz-mono);font-size:var(--fs-s);color:var(--lz-mint);flex:0 0 34px}
+.ms .m-name{flex:1;color:rgba(248,241,228,.92)}
+.ms .m-state{font-size:var(--fs-s);padding:var(--sp-3xs) var(--sp-2xs);border-radius:999px;white-space:nowrap}
+.m-state.done{background:rgba(143,212,164,.18);color:var(--lz-mint)}
+.m-state.wip{background:rgba(253,243,227,.16);color:#f3d9a8}
+.m-state.todo{background:rgba(248,241,228,.08);color:rgba(248,241,228,.55)}
+.m-state.hold{background:rgba(248,241,228,.06);color:rgba(248,241,228,.45)}
+
+/* Raised to 300px: four 270px columns of 14px copy is four shreds of text. */
+.f-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:var(--sp-m);margin-top:var(--sp-xl)}
+.f-card{
+  background:rgba(248,241,228,.05);border:1px solid var(--lz-forest-line);
+  border-radius:var(--radius);padding:var(--sp-m);
+}
+.f-card h4{margin:0 0 var(--sp-2xs);font-size:var(--fs-s);letter-spacing:.06em;color:var(--lz-mint);font-weight:700}
+.f-card ul{margin:0;padding-left:var(--sp-s);font-size:var(--fs-s);color:rgba(248,241,228,.85);line-height:var(--lh-b);max-width:var(--me-c)}
+.f-card p,.f-card .f-body{margin:0;font-size:var(--fs-s);color:rgba(248,241,228,.85);line-height:var(--lh-b);max-width:var(--me-c)}
+.f-foot{margin-top:var(--sp-l);font-size:var(--fs-s);color:rgba(248,241,228,.6)}
+
+/* ---------- archive entry ---------- */
+.archive{
+  display:flex;gap:var(--sp-m);align-items:center;justify-content:space-between;flex-wrap:wrap;
+  background:var(--lz-paper);border:1px solid var(--lz-line);border-radius:var(--radius);
+  padding:var(--sp-l);
+}
+.archive h3{margin:0 0 var(--sp-2xs);font-family:var(--lz-serif);font-size:var(--fs-h3);font-weight:700;line-height:var(--lh-h3)}
+.archive p{margin:0;font-size:var(--fs-b);line-height:var(--lh-b);color:var(--lz-muted);max-width:var(--me-b)}
+
+/* ---------- contact ---------- */
+.contact{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:var(--sp-m)}
+.contact a{
+  display:block;background:var(--card);border:1px solid var(--lz-line);
+  border-radius:var(--radius);padding:var(--sp-m);
+}
+.contact a:hover{border-color:var(--lz-green)}
+.contact span{display:block;font-size:var(--fs-m);letter-spacing:.1em;text-transform:uppercase;color:var(--lz-muted);margin-bottom:var(--sp-3xs)}
+.contact b{font-size:var(--fs-b);font-weight:600;word-break:break-all}
+
+/* ---------- footer ---------- */
+.site-footer{border-top:1px solid var(--lz-line);padding:var(--sp-xl) 0 var(--sp-2xl);font-size:var(--fs-s);color:var(--lz-muted)}
+.site-footer .wrap{display:flex;justify-content:space-between;gap:var(--sp-s);flex-wrap:wrap}
+
+/* ---------- lexi archive page ---------- */
+.lexi-hero{padding:var(--sp-xl) 0 var(--sp-m)}
+.lexi-hero h1{font-family:var(--lz-serif);font-size:clamp(26px,3.4vw,var(--fs-h1));line-height:var(--lh-h1);margin:0 0 var(--sp-xs)}
+.lexi-hero p{margin:0;color:var(--lz-muted);max-width:var(--me-b);line-height:var(--lh-l)}
+.lexi-back{display:inline-block;font-size:var(--fs-s);color:var(--lz-green-deep);font-weight:600;margin-bottom:var(--sp-s)}
+
+.carousel{
+  position:relative;height:min(72vh,560px);border-radius:var(--radius);
+  overflow:hidden;border:1px solid var(--lz-line);background:#111;
+}
+.carousel .slide{
+  position:absolute;inset:0;background-size:cover;background-position:50%;
+  opacity:0;transition:opacity .7s ease;
+}
+.carousel .slide.on{opacity:1}
+.carousel .cap{
+  position:absolute;left:0;right:0;bottom:0;padding:var(--sp-m);
+  background:linear-gradient(to top,rgba(9,12,10,.86),rgba(9,12,10,0));
+  color:#f8f1e4;display:flex;justify-content:space-between;align-items:flex-end;gap:var(--sp-s);flex-wrap:wrap;
+}
+.carousel .cap h3{margin:0;font-family:var(--lz-serif);font-size:var(--fs-h2)}
+.carousel .cap p{margin:var(--sp-3xs) 0 0;font-size:var(--fs-s);color:rgba(248,241,228,.72)}
+.carousel .cap .go{font-size:var(--fs-s);color:var(--lz-mint);font-weight:600;white-space:nowrap}
+.indicators{
+  position:absolute;right:22px;top:50%;transform:translateY(-50%);z-index:3;text-align:right;
+  margin:0;padding:0;list-style:none;
+}
+.indicators li,.indicators div{
+  cursor:pointer;color:rgba(255,255,255,.6);font-size:var(--fs-s);margin:var(--sp-xs) 0;
+  transition:color .3s,font-size .3s;
+}
+.indicators li.on,.indicators div.on{color:#fff;font-size:var(--fs-h3);font-weight:600}
+@media (max-width:760px){.indicators{display:none}}
+
+.lexi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:var(--sp-s);margin-top:var(--sp-l)}
+.lexi-card{background:var(--card);border:1px solid var(--lz-line);border-radius:var(--radius);overflow:hidden}
+.lexi-card .thumb{height:150px;background-size:cover;background-position:50%;background-color:var(--lz-sand)}
+.lexi-card .body{padding:var(--sp-s)}
+.lexi-card h4{margin:0 0 var(--sp-3xs);font-size:var(--fs-b)}
+.lexi-card p{margin:0 0 var(--sp-2xs);font-size:var(--fs-s);color:var(--lz-muted)}
+.lexi-card a{font-size:var(--fs-s);color:var(--lz-green-deep);font-weight:600}
+.dead{color:#9a5b3b;font-weight:600}
+
+/* ---------- Ask AI (static Q&A) ---------- */
+.ask-list{border-top:1px solid var(--lz-line);margin-top:var(--sp-2xs)}
+.ask-item{border-bottom:1px solid var(--lz-line)}
+.ask-item>summary{
+  display:flex;align-items:baseline;gap:var(--sp-xs);
+  padding:var(--sp-s) var(--sp-3xs);cursor:pointer;list-style:none;
+  font-family:var(--lz-serif);font-size:var(--fs-l);font-weight:600;color:var(--lz-ink);
+  transition:color .2s ease;
+}
+.ask-item>summary::-webkit-details-marker{display:none}
+.ask-item>summary::before{
+  content:"+";flex:0 0 auto;width:14px;
+  font-family:var(--lz-sans);font-size:var(--fs-b);font-weight:400;color:var(--lz-muted);
+  transition:transform .22s ease;
+}
+.ask-item[open]>summary::before{transform:rotate(45deg)}
+.ask-item>summary:hover{color:var(--lz-green-deep)}
+.ask-item .q{flex:1 1 auto}
+.ask-hint{
+  flex:0 0 auto;font-family:var(--lz-sans);font-size:var(--fs-m);font-weight:600;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--lz-muted);
+}
+.ask-item[open] .ask-hint{opacity:0}
+/* Measure pulled back to 62ch; indent now sits on the 16px step, aligned with
+   the job bullets instead of an arbitrary 32px. */
+.ask-a{padding:0 0 var(--sp-m) var(--sp-s);max-width:var(--me-b);color:var(--lz-ink-2);font-size:var(--fs-b);line-height:var(--lh-b)}
+.ask-a b{color:var(--lz-ink);font-weight:600}
+.ask-foot{margin:var(--sp-m) 0 0;font-size:var(--fs-s);color:var(--lz-muted);max-width:70ch}
+@media (max-width:640px){
+  .ask-item>summary{font-size:var(--fs-b);padding:var(--sp-s) var(--sp-3xs);gap:var(--sp-2xs)}
+  .ask-hint{display:none}
+  .ask-a{padding:0 var(--sp-3xs) var(--sp-s) var(--sp-m)}
+}
