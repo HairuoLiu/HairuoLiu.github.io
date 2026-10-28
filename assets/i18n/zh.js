@@ -36,7 +36,8 @@ window.I18N.zh = {
     chip: 'Co-op 开放中 · 2027 冬季 · 4–8 个月',
     btnProjects: '看项目',
     btnEmail: '发邮件',
-    portraitAlt: '刘海若的个人照'
+    portraitAlt: '刘海若的个人照',
+    backdrop: '刘海若'
   },
 
   /* hero 下方的简介段。三个节拍各自成段，窄屏下节奏不会被硬换行打断。
@@ -45,6 +46,13 @@ window.I18N.zh = {
     '在 Amazon Ads 待了六年，先后在两个组：先做核心平台，2021 年晋升 SDE II 后转到数据平台。',
     '我负责的是那张图谱背后的品牌数据平台与毫秒级查询。',
     '我自己也设计并出货 3D 打印的相机配件。现在在 Waterloo 读 M.Eng. ECE（Co-op），方向从数据平台转向应用型 AI。'
+  ],
+
+  timeline: [
+    { org: 'Ohio State', role: '计算机科学与工程 学士', when: '2013 – 2017' },
+    { org: 'Amazon',     role: '软件开发工程师', when: '2019 – 2021' },
+    { org: 'Amazon',     role: '高级软件开发工程师', when: '2021 – 2025' },
+    { org: 'Waterloo',   role: '电气与计算机工程 硕士（含实习）', when: '2026 –' }
   ],
 
   sec: {

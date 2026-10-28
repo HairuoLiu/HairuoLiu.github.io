@@ -215,6 +215,22 @@
       }).join('') + '</div>';
     }
 
+    /* Career timeline band under the hero — glanceable trajectory. */
+    var timelineHtml = '';
+    if (t.timeline && t.timeline.length) {
+      timelineHtml = '<div class="timeline-band" aria-label="Career timeline">' +
+        '<div class="tl-track">' +
+        t.timeline.map(function (it) {
+          return '<div class="tl-item">' +
+            '<span class="tl-dot"></span>' +
+            '<span class="tl-org">' + it.org + '</span>' +
+            '<span class="tl-role">' + it.role + '</span>' +
+            '<span class="tl-when">' + it.when + '</span>' +
+          '</div>';
+        }).join('') +
+        '</div></div>';
+    }
+
     /* Hero composition follows lizheng.ai: copy on the left, portrait bottom-anchored
        at the bottom-right of the intro block — unframed, drop-shadowed, with a paper
        grain overlay and a soft light behind the subject. */
@@ -231,6 +247,7 @@
           '</div>' +
         '</div>' +
         '<div class="hero-art">' +
+          '<span class="hero-backdrop" aria-hidden="true">' + (t.hero.backdrop || '') + '</span>' +
           '<picture>' +
             '<source srcset="assets/avatar.webp" type="image/webp">' +
             '<img class="portrait rise" src="assets/avatar.png" width="512" height="512" ' +
@@ -238,7 +255,7 @@
           '</picture>' +
         '</div>' +
       '</div>' +
-      aboutHtml);
+      aboutHtml + timelineHtml);
 
     set('expBox', secHead(t.sec.experience) + t.jobs.map(function (j) {
       return '<div class="job">' +

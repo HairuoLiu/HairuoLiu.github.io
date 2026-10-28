@@ -40,7 +40,8 @@ window.I18N.en = {
     chip: 'Open to Co-op · Winter 2027 · 4–8 months',
     btnProjects: 'See projects',
     btnEmail: 'Email me',
-    portraitAlt: 'Portrait of Hairuo Liu'
+    portraitAlt: 'Portrait of Hairuo Liu',
+    backdrop: 'Liu'
   },
 
   /* Intro paragraph shown under the hero. Three beats kept as three blocks:
@@ -51,6 +52,15 @@ window.I18N.en = {
     'Six years at Amazon Ads across two teams — Core Platform first, then Data Platform after my promotion to SDE II.',
     'My part was the brand-data platform — the ingestion pipeline and the millisecond lookups that fed it.',
     'I also design and ship my own 3D-printed camera hardware. I am now at Waterloo for an M.Eng. in ECE (Co-op), moving from data platforms toward applied AI.'
+  ],
+
+  /* Compact career-trajectory band under the hero — a glanceable proof strip
+     that echoes the "name-behind-photo + timeline" polish of a strong portfolio. */
+  timeline: [
+    { org: 'Ohio State', role: 'B.S. Computer Science & Engineering', when: '2013 – 2017' },
+    { org: 'Amazon',     role: 'Software Development Engineer',        when: '2019 – 2021' },
+    { org: 'Amazon',     role: 'SDE II',                              when: '2021 – 2025' },
+    { org: 'Waterloo',   role: 'M.Eng. ECE (Co-op)',                  when: '2026 –' }
   ],
 
   sec: {
