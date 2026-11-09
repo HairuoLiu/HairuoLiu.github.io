@@ -56,11 +56,12 @@ window.I18N.en = {
 
   /* Compact career-trajectory band under the hero — a glanceable proof strip
      that echoes the "name-behind-photo + timeline" polish of a strong portfolio.
-     The 2018 entry is intentionally low-detail: it closes the 2017–2019 gap
-     without inviting questions. No company name, no outcome, no metrics. */
+     The 2018 entry is intentionally bare: it closes the 2017–2019 gap without
+     inviting questions. "VR startup" is deliberately neutral on how he joined —
+     no company name, no founder/employee claim, no outcome, no metrics. */
   timeline: [
     { org: 'Ohio State',     role: 'B.S. Computer Science & Engineering', when: '2013 – 2017' },
-    { org: 'Silicon Valley', role: 'AR/VR startup with classmates',        when: '2018' },
+    { org: 'Silicon Valley', role: 'VR startup',                           when: '2018' },
     { org: 'Amazon',         role: 'Software Development Engineer',        when: '2019 – 2021' },
     { org: 'Amazon',         role: 'SDE II',                              when: '2021 – 2025' },
     { org: 'Waterloo',       role: 'M.Eng. ECE (Co-op)',                  when: '2026 –' }
