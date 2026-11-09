@@ -256,9 +256,12 @@ html[data-lang="zh"] .hero-lede{max-width:32em}
    a rule. Restrained palette — the line and dot carry the only colour. */
 .timeline-band{margin-top:var(--sp-2xl);padding:var(--sp-l) 0;
   border-top:1px solid var(--lz-line-2);border-bottom:1px solid var(--lz-line-2)}
-.tl-track{position:relative;display:flex;justify-content:space-between;gap:var(--sp-l)}
+.tl-track{position:relative;display:flex;justify-content:space-between;gap:var(--sp-m)}
 .tl-track:before{content:"";position:absolute;left:5px;right:5px;top:5px;height:2px;background:var(--lz-line-2)}
-.tl-item{position:relative;z-index:1;flex:1 1 0;min-width:128px}
+/* min-width:0 matters with five nodes: a fixed 128px floor forced the track
+   wider than the viewport between 721px and ~830px and clipped the last item.
+   Let the columns shrink and wrap instead of overflowing. */
+.tl-item{position:relative;z-index:1;flex:1 1 0;min-width:0}
 .tl-dot{display:block;width:12px;height:12px;border-radius:50%;
   background:var(--lz-green);border:3px solid var(--lz-ivory);margin-bottom:var(--sp-xs)}
 .tl-org{display:block;font-weight:600;font-size:var(--fs-m);color:var(--lz-ink);letter-spacing:.01em}

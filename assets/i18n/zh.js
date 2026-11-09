@@ -48,10 +48,13 @@ window.I18N.zh = {
     '我自己也设计并出货 3D 打印的相机配件。现在在 Waterloo 读 M.Eng. ECE（Co-op），方向从数据平台转向应用型 AI。'
   ],
 
+  /* 2018 那条刻意只写一行：用来补上 2017–2019 的空档，不展开公司名、
+     产品细节与结果，避免把叙事重心从 Amazon 与 Waterloo 移走。 */
   timeline: [
     { org: 'Ohio State', role: '计算机科学与工程 学士', when: '2013 – 2017' },
-    { org: 'Amazon',     role: '软件开发工程师', when: '2019 – 2021' },
-    { org: 'Amazon',     role: '高级软件开发工程师', when: '2021 – 2025' },
+    { org: '硅谷',       role: '与同学创业（AR/VR）',   when: '2018' },
+    { org: 'Amazon',     role: '软件开发工程师',        when: '2019 – 2021' },
+    { org: 'Amazon',     role: '高级软件开发工程师',    when: '2021 – 2025' },
     { org: 'Waterloo',   role: '电气与计算机工程 硕士（含实习）', when: '2026 –' }
   ],
 
